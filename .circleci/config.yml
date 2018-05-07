@@ -32,10 +32,7 @@ jobs:
 
       - persist_to_workspace:
           root: ~/repo
-          paths:
-            - node_modules
-            - es5
-            - package.json
+          paths: .
   deploy:
     docker:
       - image: circleci/node:8.8.1
