@@ -13,7 +13,6 @@ jobs:
 
     steps:
       - checkout
-
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -31,12 +30,15 @@ jobs:
       # run tests!
       - run: yarn test
 
+      -
+
 
       - persist_to_workspace:
-          root: ./
+          root: ~/repo
           paths:
             - node_modules
             - es5
+            - package.json
   deploy:
     docker:
       - image: circleci/node:8.8.1
@@ -44,16 +46,13 @@ jobs:
       - checkout
       - setup_remote_docker
       - attach_workspace:
-          at: ./
+          at: ~/repo
       - run:
-          name: Install dependencies
-          command: |
-            echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
-            git clone --depth 1 git@github.com:6RiverSystems/infrastructure.git ~/infrastructure
+          name: Authenticate with registry
+          command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/repo/.npmrc
       - run:
-          name: Publish Docker
-          command: |
-            make -f ~/infrastructure/ci_scripts/release.makefile docker_publish
+          name: Publish package
+          command: npm publish
 workflows:
   version: 2
 
