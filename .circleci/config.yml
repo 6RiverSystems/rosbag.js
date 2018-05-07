@@ -9,8 +9,6 @@ jobs:
       # specify the version you desire here
       - image: circleci/node:8.11
 
-#    working_directory: ~/repo
-
     steps:
       - checkout
       # Download and cache dependencies
@@ -43,7 +41,7 @@ jobs:
           at: ./
       - run:
           name: Authenticate with registry
-          command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/.npmrc
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
       - run:
           name: Publish package
           command: npm publish
