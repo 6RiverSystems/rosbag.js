@@ -1,5 +1,5 @@
 {
-  "name": "rosbag",
+  "name": "@sixriver/rosbag",
   "version": "1.0.2-6river",
   "license": "Apache-2.0",
   "dependencies": {
