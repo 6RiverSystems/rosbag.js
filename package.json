@@ -1,5 +1,5 @@
 {
-  "name": "@sixriver/rosbag",
+  "name": "@6river/rosbag",
   "version": "1.0.2-6river",
   "license": "Apache-2.0",
   "dependencies": {
@@ -7,7 +7,8 @@
     "browser-or-node": "1.0.2",
     "buffer": "5.0.5",
     "heap": "0.2.6",
-    "int53": "0.2.4"
+    "int53": "0.2.4",
+    "yarn": "1.6.0"
   },
   "engines": {
     "node": ">=8.0.0"
