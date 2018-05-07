@@ -9,7 +9,7 @@ jobs:
       # specify the version you desire here
       - image: circleci/node:8.11
 
-    working_directory: ~/repo
+#    working_directory: ~/repo
 
     steps:
       - checkout
@@ -31,7 +31,7 @@ jobs:
       - run: yarn test
 
       - persist_to_workspace:
-          root: ~/repo
+          root: ./
           paths: .
   deploy:
     docker:
@@ -40,10 +40,10 @@ jobs:
       - checkout
       - setup_remote_docker
       - attach_workspace:
-          at: ~/repo
+          at: ./
       - run:
           name: Authenticate with registry
-          command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/repo/.npmrc
+          command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/.npmrc
       - run:
           name: Publish package
           command: npm publish
